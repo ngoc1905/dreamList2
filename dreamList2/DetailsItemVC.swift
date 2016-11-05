@@ -30,6 +30,25 @@ class DetailsItemVC: UIViewController {
     }
     
     @IBAction func savePassed(_ sender: AnyObject) {
+        
+        let item = Item(context: context);
+        
+        if let title = textFieldName.text {
+            item.title = title;
+        }
+        if let price = textFieldPrice.text {
+            item.price = Double(price)! ;
+        }
+        
+        if let description = textFieldDescr.text {
+            item.details = description;
+        }
+        
+        item.toStore = stores[pickerView.selectedRow(inComponent: 0)];
+        
+        appDelegate.saveContext();
+        
+        dismiss(animated: true, completion: nil);
     }
     
     @IBAction func btnDelete(_ sender: AnyObject) {
@@ -49,9 +68,9 @@ class DetailsItemVC: UIViewController {
 //        let store2 = Store(context: context);
 //        store2.name = "Axon Active";
         
-        appDelegate.saveContext()
-        getStore()
-
+//        appDelegate.saveContext()
+getStore()
+//
     }
     
     
